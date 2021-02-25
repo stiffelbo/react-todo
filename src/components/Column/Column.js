@@ -8,49 +8,52 @@ import Icon from '../Icon/Icon.js';
 class Column extends React.Component {
     //component initial state
     state = {
-        cards: this.props.cards || [],
-      }
+      cards: this.props.cards || [],
+    }
     
     //define static property of Class, must be named propTypes
     static propTypes = {
-        title: PropTypes.string.isRequired,        
-      }
+      key: PropTypes.number.isRequired,      
+      title: PropTypes.string.isRequired,
+      cards: PropTypes.object.isRequired,
+      icon: PropTypes.string.isRequired,        
+    }
 
     addCard(title){
-        this.setState(state => (
-          {
-            cards: [
-              ...state.cards,
-              {
-                key: state.cards.length ? state.cards[state.cards.length-1].key+1 : 0,
-                title: title,                
-              }
-            ]
-          }
-        ));
+      this.setState(state => (
+        {
+          cards: [
+            ...state.cards,
+            {
+              key: state.cards.length ? state.cards[state.cards.length-1].key+1 : 0,
+              title: title,                
+            },
+          ],
+        }
+      ));
     }
 
     //skąd on wie za ma użyć tej metody przy tworzeniu instancji?
     //metoda prób doszedlem do Creatora, wywaliłem text bo i tak używa placeholdera ze statica, nie do konca to rozumiem.
     render() {
-        return ( 
-            <section className = { styles.component }>
-                <h3 className = { styles.title }>
-                    {this.props.title}
-                    <span className = { styles.icon }>
-                        <Icon name={this.props.icon}/>
-                    </span>
-                </h3>                    
-                <div>
-                    {this.state.cards.map(({key, title})=>(
-                        <Card title={key, title}/>
-                    ))}
-                </div>
-                <div className={styles.creator}>                 
-                    <Creator key={this.props.key} action={title => this.addCard(title)}/>
-                </div>
-            </section>
-        )
+      return ( 
+        <section className = { styles.component }>
+          <h3 className = { styles.title }>
+            {this.props.title}
+            <span className = { styles.icon }>
+              <Icon name={this.props.icon}/>
+            </span>
+          </h3>                    
+          <div>
+            {this.state.cards.map(({key, title})=>(
+              <Card key={key} title={title}/>
+            ))}
+          </div>
+          <div className={styles.creator}>                 
+            <Creator key={this.props.key} action={title => this.addCard(title)}/>
+          </div>
+        </section>
+      );
     }
 }
 
