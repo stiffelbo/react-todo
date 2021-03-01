@@ -1,15 +1,21 @@
 import React from 'react';
 import styles from './App.scss';
-import List from '../List/List.js';
-import Card from '../Card/Card.js';
-import Creator from '../Creator/Creator.js';
+import PropTypes from 'prop-types';
+import List from '../List/ListContainer.js';
+//import Card from '../Card/Card.js';
+//import Creator from '../Creator/Creator.js';
 
-import {pageContents, listData} from '../../data/dataStore.js';
 
 class App extends React.Component {
 
     state = {
       cards: [],
+    }
+
+    static propTypes = {
+      title: PropTypes.node,
+      subtitle: PropTypes.node,
+      lists: PropTypes.array,
     }
 
     addCard(title){
@@ -27,20 +33,14 @@ class App extends React.Component {
     }
 
     render() {
-      return ( 
-        <main className = { styles.component } >
-          <h1 className = { styles.title } > {pageContents.title} </h1>    
-          <h2 className = { styles.subtitle } > {pageContents.subtitle} </h2>
-          <div className = { styles.list }>
-            <Creator text="add new item" action={title => this.addCard(title)}/>
-          </div>
-          
-          <div className = {styles.list}>
-            {this.state.cards.map(({key, title})=>(
-              <Card key={key}title={title}/>
-            ))}
-          </div>   
-          <List {...listData} />              
+      const {title, subtitle, lists} = this.props;
+      return (
+        <main className={styles.component}>
+          <h1 className={styles.title}>{title}</h1>
+          <h2 className={styles.subtitle}>{subtitle}</h2>
+          {lists.map(listData => (
+            <List key={listData.id} {...listData} />
+          ))}
         </main>
       );
     }
