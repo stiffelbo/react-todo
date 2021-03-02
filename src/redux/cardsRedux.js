@@ -4,7 +4,7 @@ import shortid from 'shortid';
 
 // ????? co oznacza zapis  ({cards}, ColumnId) i czemu Column z duzej ????
 
-export const getCardsForColumn = ({cards}, ColumnId) => cards.filter(card => card.columnId == ColumnId);
+export const getCardsForColumn = ({cards, searchString}, ColumnId) => cards.filter(card => card.columnId == ColumnId && new RegExp(searchString, 'i').test(card.title));
 
 // action name creator
 const reducerName = 'cards';
