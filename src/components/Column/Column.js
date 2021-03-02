@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './Column.scss';
 import PropTypes from 'prop-types';
-//import Creator from '../Creator/Creator.js';
+import Creator from '../Creator/Creator.js';
 import Card from '../Card/Card.js';
 import Icon from '../Icon/Icon.js';
 import settings from '../../styles/settings.scss'
+import { ADD_CARD } from '../../redux/cardsRedux';
 
 class Column extends React.Component {
       
@@ -13,7 +14,8 @@ class Column extends React.Component {
       key: PropTypes.number,      
       title: PropTypes.string.isRequired,
       cards: PropTypes.array.isRequired,
-      icon: PropTypes.string.isRequired,        
+      icon: PropTypes.string.isRequired,
+      addCard: PropTypes.func.isRequired,         
     }
 
     static defaultProps = {
@@ -22,7 +24,7 @@ class Column extends React.Component {
 
 
     render() {
-      const {title, icon, cards} = this.props;
+      const {title, icon, cards, addCard} = this.props;
       return ( 
         
         <section className = { styles.component }>
@@ -38,11 +40,11 @@ class Column extends React.Component {
               <Card key={cardsData.key} {...cardsData} />
             ))}
           </div>
-          {/*
-          <div className={styles.creator}>                 
-            <Creator key={this.props.key} action={title => this.addCard(title)}/>
+          
+          <div className={styles.creator}>
+            <Creator text={settings.columnCreatorText} action={addCard}/>
           </div>
-          */} 
+          
         </section>
       );
     }
