@@ -1,11 +1,11 @@
+  
 import React from 'react';
 import styles from './Column.scss';
 import PropTypes from 'prop-types';
 import Creator from '../Creator/Creator.js';
 import Card from '../Card/Card.js';
 import Icon from '../Icon/Icon.js';
-import settings from '../../styles/settings.scss'
-import { ADD_CARD } from '../../redux/cardsRedux';
+import settings from '../../styles/settings.scss';
 
 class Column extends React.Component {
       

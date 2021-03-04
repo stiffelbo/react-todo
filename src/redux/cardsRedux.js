@@ -2,18 +2,19 @@ import shortid from 'shortid';
 
 // selectors
 
-// ????? co oznacza zapis  ({cards}, ColumnId) i czemu Column z duzej ????
+// fyrażenie funkcjyne -> funkcja która działa na całym stanie
 
 export const getCardsForColumn = ({cards, searchString}, ColumnId) => cards.filter(card => card.columnId == ColumnId && new RegExp(searchString, 'i').test(card.title));
 
-// action name creator
+// action name creator - taki namespace dla akcji
+
 const reducerName = 'cards';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 // action types
 export const ADD_CARD = createActionName('ADD_CARD');
 
-// action creators
+// action creators - tworze obiekt / type jest wymaganym property
 export const createActionAddCard = payload => ({ payload: { ...payload, id: shortid.generate() }, type: ADD_CARD});
 
 // reducer
