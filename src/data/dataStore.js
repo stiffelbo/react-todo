@@ -145,6 +145,24 @@ const cards = [
     columnId: 'column-3',
     title: 'Skyrim',
   },
+  {
+    id: 'card-7',
+    index: 2,
+    columnId: 'column-3',
+    title: 'MaxPayne',
+  },
+  {
+    id: 'card-8',
+    index: 3,
+    columnId: 'column-3',
+    title: 'NeedForSpeed',
+  },
+  {
+    id: 'card-9',
+    index: 4,
+    columnId: 'column-3',
+    title: 'Diablo',
+  },
 ];
 
 const initialStoreData = {

@@ -18,6 +18,7 @@ class App extends React.Component {
       title: PropTypes.node,
       subtitle: PropTypes.node,
       lists: PropTypes.array,
+      moveCard: PropTypes.func,
     }
 
     addCard(title){
@@ -35,15 +36,39 @@ class App extends React.Component {
     }
 
     render() {
-      const {title, subtitle, lists} = this.props;
+      const {title, subtitle, lists, moveCard} = this.props;
       const moveCardHandler = result => {
-        console.log(result);
+        if(
+          //check if dropped to defined context
+          result.destination
+          &&
+          (
+            //check if index has changed
+            result.destination.index != result.source.index
+            ||
+            //check if container id has changed
+            result.destination.droppableId != result.source.droppableId
+          )
+        ){
+          moveCard({
+            id: result.draggableId,
+            dest: {
+              index: result.destination.index,
+              columnId: result.destination.droppableId,
+            },
+            src: {
+              index: result.source.index,
+              columnId: result.source.droppableId,
+            },
+          });
+        }
       };
+
       return (
         <main className={styles.component}>
           <h1 className={styles.title}>{title}</h1>
           <h2 className={styles.subtitle}>{subtitle}</h2>
-          <Search />
+          <Search />          
           <DragDropContext onDragEnd={moveCardHandler}>
             {lists.map(listData => (
               <List key={listData.id} {...listData} />

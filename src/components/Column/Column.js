@@ -6,12 +6,14 @@ import Creator from '../Creator/Creator.js';
 import Card from '../Card/Card.js';
 import Icon from '../Icon/Icon.js';
 import settings from '../../styles/settings.scss';
+import {Droppable} from 'react-beautiful-dnd'; //importuje komponent z biblioteki
 
 class Column extends React.Component {
       
     //define static property of Class, must be named propTypes
     static propTypes = {
       key: PropTypes.number,      
+      id: PropTypes.string,      
       title: PropTypes.string.isRequired,
       cards: PropTypes.array.isRequired,
       icon: PropTypes.string.isRequired,
@@ -24,7 +26,7 @@ class Column extends React.Component {
 
 
     render() {
-      const {title, icon, cards, addCard} = this.props;
+      const {title, icon, cards, addCard, id} = this.props;
       return ( 
         
         <section className = { styles.component }>
@@ -36,9 +38,19 @@ class Column extends React.Component {
           </h3>
                               
           <div>
-            {cards.map(cardsData => (
-              <Card key={cardsData.key} {...cardsData} />
-            ))}
+            <Droppable droppableId={id}>
+              {provided => (
+                <div className={styles.cards}
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {cards.map(cardData => (
+                    <Card key={cardData.id} {...cardData} />
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
           </div>
           
           <div className={styles.creator}>
