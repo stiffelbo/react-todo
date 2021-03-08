@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styles from './List.scss';
+import Container from '../Container/Container.js';
 import Hero from '../Hero/Hero.js';
 import Column from '../Column/ColumnContainer.js';
 import Creator from '../Creator/Creator.js';
@@ -8,26 +9,27 @@ import settings from '../../styles/settings.scss';
 import PropTypes from 'prop-types';
 
 const List = props => (
-  
-  <section className = { styles.component }>
-    
-    <Hero titleText={props.title} image={props.image} />
+  <Container>
+    <section className = { styles.component }>
       
-    <div className={styles.description}>
-      {ReactHtmlParser(props.description)}
-    </div>
-    
-    
-    <div className={styles.creator}>
-      <Creator text={settings.columnCreatorText} action={props.addColumn}/>
-    </div>
-    
-    <div className = { styles.columns }>
-      {props.columns.map(columnData => (
-        <Column key={columnData.id} {...columnData} />
-      ))}                    
-    </div>                    
-  </section>
+      <Hero titleText={props.title} image={props.image} />
+        
+      <div className={styles.description}>
+        {ReactHtmlParser(props.description)}
+      </div>
+      
+      
+      <div className={styles.creator}>
+        <Creator text={settings.columnCreatorText} action={props.addColumn}/>
+      </div>
+      
+      <div className = { styles.columns }>
+        {props.columns.map(columnData => (
+          <Column key={columnData.id} {...columnData} />
+        ))}                    
+      </div>                    
+    </section>
+  </Container>
 );
   
 List.propTypes = {
