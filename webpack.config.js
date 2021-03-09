@@ -4,75 +4,79 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const baseConfig = () => ({
-    entry: './src/index.js', //main app code
-    output: {
-        path: path.join(__dirname, 'dist'), //prod version destination
-        filename: 'scripts_bundle.js',
-    },
-    module: {
-        rules: [ //config for files
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
-            },
-        ],
-    },
-    plugins: [ //necessary plugins
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-        }),
+  entry: './src/index.js', //main app code  
+  output: {
+    path: path.join(__dirname, 'dist'), //prod version destination
+    publicPath: '/',
+    filename: 'scripts_bundle.js',
+  },
+  devServer: {
+    historyApiFallback: true,
+  },  
+  module: {
+    rules: [ //config for files
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
     ],
+  },
+  plugins: [ //necessary plugins
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
 });
 
 const devConfig = () => ({
-    module: {
-        rules: [{
-            test: /\.(s*)css$/,
-            use: [
-                'style-loader',
-                {
-                    loader: 'css-loader',
-                    query: {
-                        modules: true,
-                        localIdentName: '[name]_[local]_[hash:base64:5]',
-                    },
-                },
-                'sass-loader',
-            ],
-        }, ],
-    },
+  module: {
+    rules: [{
+      test: /\.(s*)css$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          query: {
+            modules: true,
+            localIdentName: '[name]_[local]_[hash:base64:5]',
+          },
+        },
+        'sass-loader',
+      ],
+    } ],
+  },
 });
 
 const prodConfig = () => ({
-    module: {
-        rules: [{
-            test: /\.(s*)css$/,
-            use: [
-                MiniCssExtractPlugin.loader,
-                {
-                    loader: 'css-loader',
-                    query: {
-                        modules: true,
-                        localIdentName: '[name]_[local]_[hash:base64:5]',
-                    },
-                },
-                'sass-loader',
-            ],
-        }, ],
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'styles_bundle_[name].css',
-            chunkFilename: '[id].css',
-        }),
-    ],
+  module: {
+    rules: [{
+      test: /\.(s*)css$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          query: {
+            modules: true,
+            localIdentName: '[name]_[local]_[hash:base64:5]',
+          },
+        },
+        'sass-loader',
+      ],
+    } ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles_bundle_[name].css',
+      chunkFilename: '[id].css',
+    }),
+  ],
 });
 
 module.exports = (env, argv) => {
-    const modeConfig = argv.mode == 'production' ? prodConfig : devConfig;
+  const modeConfig = argv.mode == 'production' ? prodConfig : devConfig;
 
-    return merge(baseConfig(), modeConfig());
+  return merge(baseConfig(), modeConfig());
 };

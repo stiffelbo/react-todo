@@ -183,6 +183,59 @@ const cards = [
   },
 ];
 
+export const info = {
+  heroImg: 'https://images.pexels.com/photos/87080/space-shuttle-start-discovery-spaceport-87080.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  title: 'Important info',
+  subtitle: 'Info subtitle',
+  description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
+};
+
+export const faq = {
+  heroImg: 'https://images.pexels.com/photos/220210/pexels-photo-220210.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  title: 'FAQ',
+  subtitle: 'Questions asked lately',
+  questions: [
+    {
+      id: 0,
+      title : 'How to add task?',
+      answer: 'Just fill text field with content and click ok.',
+    },
+    {
+      id: 1,
+      title : 'How to delete task?',
+      answer: 'Sorry you cant.',
+    },
+    {
+      id: 2,
+      title : 'How to move task?',
+      answer: 'Sorry you cant. dragNdrop is not working properly.',
+    },
+    {
+      id: 3,
+      title : 'Can I add new column?',
+      answer: 'Yes, just type name in text field and click ok.',
+    },
+  ],
+};
+
+export const header = {
+  logo: 'star',
+  nav: [
+    {
+      name: 'Home',
+      path: '/',
+    },
+    {
+      name: 'Info',
+      path: '/info',
+    },
+    {
+      name: 'FAQ',
+      path: '/faq',
+    },
+  ],
+};
+
 const initialStoreData = {
   app: {...pageContents},
   lists: [...lists],
