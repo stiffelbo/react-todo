@@ -79,6 +79,18 @@ const lists = [
     description: 'Interesting things I want to check out!',
     image: 'http://uploads.kodilla.com/bootcamp/fer/11.react/space.png',
   },
+  {
+    id: 'list-2',
+    title: 'Things to learn',
+    description: 'Usefull stuf I need to aquire.',
+    image: 'https://images.pexels.com/photos/4144101/pexels-photo-4144101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  },
+  {
+    id: 'list-3',
+    title: 'Miles to run',
+    description: 'Gogogo man',
+    image: 'https://images.pexels.com/photos/3601094/pexels-photo-3601094.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  },
 ];
 
 const columns = [
@@ -99,13 +111,7 @@ const columns = [
     listId: 'list-1',
     title: 'Games',
     icon: 'gamepad',
-  },
-  {
-    id: 'column-4',
-    listId: 'list-2',
-    title: 'Strange column',
-    icon: 'question',
-  },
+  },  
 ];
 
 const cards = [

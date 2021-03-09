@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './Faq.scss';
+import PropTypes from 'prop-types';
 import Container from '../Container/Container';
 import Hero from '../Hero/Hero';
 import {faq} from '../../data/dataStore';
 
-const Info = () => (
+const Faq = () => (
   <Container>
     <Hero titleText={faq.title} image={faq.heroImg}></Hero>
     <h2 className={styles.subtitle}>{faq.subtitle}</h2>
@@ -17,4 +18,4 @@ const Info = () => (
   </Container>
 );
 
-export default Info;
+export default Faq;

@@ -6,7 +6,6 @@ import Creator from '../Creator/Creator.js';
 import Card from '../Card/Card.js';
 import Icon from '../Icon/Icon.js';
 import settings from '../../styles/settings.scss';
-import {Droppable} from 'react-beautiful-dnd'; //importuje komponent z biblioteki
 
 class Column extends React.Component {
       
@@ -37,21 +36,12 @@ class Column extends React.Component {
             </span>
           </h3>
                               
-          <div>
-            <Droppable droppableId={id}>
-              {provided => (
-                <div className={styles.cards}
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {cards.map(cardData => (
-                    <Card key={cardData.id} {...cardData} />
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
+          <div>            
+            {cards.map(cardData => (
+              <Card key={cardData.id} {...cardData} />
+            ))}            
           </div>
+           
           
           <div className={styles.creator}>
             <Creator text={settings.columnCreatorText} action={addCard}/>
