@@ -44,17 +44,17 @@ class Search extends React.Component {
   }
 
   render() {
-    const {text, countVisible, countAll, history} = this.props;
+    const {countVisible, countAll, searchString} = this.props;
     const {value} = this.state;
     const {icon} = settings.search;
-    const searchStr = history.location.pathname.length > 1 ? history.location.pathname.replace('/search/', '') : '';
+    
     return (
 
       <Container>
         <div className={styles.component}>
           <input
             type='text'
-            placeholder={searchStr}
+            placeholder={searchString}
             value={value}
             onChange={event => this.handleChange(event)}
           />
