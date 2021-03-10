@@ -8,7 +8,7 @@ import Container from '../Container/Container.js';
 import {Link} from 'react-router-dom';
 
 class SearchResults extends React.Component {
-
+ 
   static propTypes = {
     cards: PropTypes.array,
   }
@@ -24,16 +24,14 @@ class SearchResults extends React.Component {
   changeSearch = () => {
     this.props.changeSearchString(this.props.match.params.cards);
   }
+
   render() {
-    const { cards, columns} = this.props;
-    console.log('columns ', columns);
-    console.log('cards ', cards);
+    const { cards, columns} = this.props;    
     return (
       <Container>
-        <section className={styles.component}>
-          {console.log(cards)}
+        <section className={styles.component}>          
           {cards.map(cardData => {
-            const listId = columns.filter(column => column.id == cardData.columnId)[0].listId;            
+            const listId = columns.find(column => column.id == cardData.columnId).listId;            
             // eslint-disable-next-line react/jsx-key
             return (<Link className={styles.logo} to={`/list/${listId}`}> 
               <Card key={cardData.id} {...cardData} />
