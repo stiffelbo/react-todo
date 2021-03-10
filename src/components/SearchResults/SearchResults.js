@@ -25,17 +25,20 @@ class SearchResults extends React.Component {
     this.props.changeSearchString(this.props.match.params.cards);
   }
   render() {
-    const { cards} = this.props;
-    console.log(this.props);
+    const { cards, columns} = this.props;
+    console.log('columns ', columns);
+    console.log('cards ', cards);
     return (
       <Container>
         <section className={styles.component}>
           {console.log(cards)}
-          {cards.map(cardData => (
-            <Link className={styles.logo} to='/'> {/*tu by można upakować nazwe listy i wtedy kazdy wynik jest linkiem, tylko carty musiały by miec property z nazwą listy.*/}
+          {cards.map(cardData => {
+            const listId = columns.filter(column => column.id == cardData.columnId)[0].listId;            
+            // eslint-disable-next-line react/jsx-key
+            return (<Link className={styles.logo} to={`/list/${listId}`}> 
               <Card key={cardData.id} {...cardData} />
-            </Link>
-          ))} 
+            </Link>);
+          })} 
         </section>
       </Container>
 

@@ -5,6 +5,7 @@ import {createAction_changeSearchString} from '../../redux/searchStringRedux';
 
 const mapStateToProps = (state) => ({
   cards: getFilteredCards(state),
+  columns: state.columns,
 });
 
 const mapDispatchToProps = (dispatch) => ({
