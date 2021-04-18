@@ -24,4 +24,7 @@
       background: darken($color-warning, 5%);
     }
   }
+  &.active{
+    background: $color-light;
+  }
 }
